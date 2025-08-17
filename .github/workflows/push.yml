@@ -7,7 +7,7 @@ jobs:
       - name: Setup deck
         uses: kong/setup-deck@v1
         with:
-          deck-version: '1.16.0'
+          deck-version: '1.8.0'
 
       - name: Clone repository
         uses: actions/checkout@v2
