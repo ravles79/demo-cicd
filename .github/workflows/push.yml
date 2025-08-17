@@ -13,4 +13,4 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Run DecK sync
-        run: deck sync --kong-addr https://us.api.konghq.com
+        run: deck sync --kong-addr https://us.api.konghq.com --kong-workspace ../../konnect-export.yaml
