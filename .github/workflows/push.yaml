@@ -1,0 +1,22 @@
+name: Run DecK
+on: push
+jobs:
+  deck-sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup deck
+        uses: kong/setup-deck@v1
+        with:
+          deck-version: '1.16.0'
+
+      - name: Clone repository
+        uses: actions/checkout@v2
+
+      - name: Install DecK
+        run: |
+          go get github.com/haproxytech/deck/cmd/deck
+
+      - name: Run DecK sync
+        run: |
+          deck sync --kong-addr https://us.api.konghq.com
+          echo "DecK sync completed successfully."
