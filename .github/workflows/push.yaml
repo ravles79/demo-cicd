@@ -12,10 +12,6 @@ jobs:
       - name: Clone repository
         uses: actions/checkout@v2
 
-      - name: Install DecK
-        run: |
-          go get github.com/haproxytech/deck/cmd/deck
-
       - name: Run DecK sync
         run: |
           deck sync --kong-addr https://us.api.konghq.com
