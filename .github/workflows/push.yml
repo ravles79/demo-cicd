@@ -14,5 +14,5 @@ jobs:
 
       - name: Run DecK sync
         run:
-          deck gateway sync --kong-addr https://us.api.konghq.com --kong-token kpat_C1m8GIbvammDDQIc69bgEHgAksgnXDL4N7uQALbaP84Q3Wv9M
+          deck sync --kong-addr https://us.api.konghq.com --kong-token kpat_C1m8GIbvammDDQIc69bgEHgAksgnXDL4N7uQALbaP84Q3Wv9M
           echo "DecK sync completed successfully."
