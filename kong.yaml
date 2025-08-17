@@ -1,0 +1,107 @@
+_format_version: "3.0"
+_konnect:
+  control_plane_name: serverless-default
+consumers:
+- basicauth_credentials:
+  - password: ed2ebf53b358ff3ca02f16b7632051826fa4ff37
+    username: demo
+  custom_id: demo
+  username: demo
+plugins:
+- config:
+    anonymous: null
+    hide_credentials: false
+    realm: service
+  enabled: true
+  name: basic-auth
+  protocols:
+  - grpc
+  - grpcs
+  - http
+  - https
+  - ws
+  - wss
+- config:
+    graphql_server_path: /graphql
+  enabled: true
+  name: degraphql
+  protocols:
+  - grpc
+  - grpcs
+  - http
+  - https
+  route: Kong-Air-Flights-API
+  service: Kong-Air-Flights-API
+- config:
+    day: null
+    error_code: 429
+    error_message: API rate limit exceeded
+    fault_tolerant: true
+    header_name: null
+    hide_client_headers: false
+    hour: null
+    limit_by: consumer
+    minute: 2
+    month: null
+    path: null
+    policy: local
+    redis:
+      database: 0
+      host: null
+      password: null
+      port: 6379
+      server_name: null
+      ssl: false
+      ssl_verify: false
+      timeout: 2000
+      username: null
+    redis_database: 0
+    redis_host: null
+    redis_password: null
+    redis_port: 6379
+    redis_server_name: null
+    redis_ssl: false
+    redis_ssl_verify: false
+    redis_timeout: 2000
+    redis_username: null
+    second: null
+    sync_rate: -1
+    year: null
+  enabled: true
+  name: rate-limiting
+  protocols:
+  - grpc
+  - grpcs
+  - http
+  - https
+services:
+- connect_timeout: 60000
+  enabled: true
+  host: api.kong-air.com
+  name: Kong-Air-Flights-API
+  path: /flights
+  port: 443
+  protocol: https
+  read_timeout: 60000
+  retries: 5
+  routes:
+  - https_redirect_status_code: 426
+    methods:
+    - GET
+    - OPTIONS
+    name: Kong-Air-Flights-API
+    path_handling: v0
+    paths:
+    - /first-path2
+    preserve_host: false
+    protocols:
+    - http
+    - https
+    regex_priority: 0
+    request_buffering: true
+    response_buffering: true
+    strip_path: true
+    tags:
+    - quickstart-demo
+    - get
+  write_timeout: 60000
