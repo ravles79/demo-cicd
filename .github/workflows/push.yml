@@ -1,7 +1,7 @@
 name: Run DecK
 on: push
 jobs:
-  deck-sync:
+  diff-deck:
     runs-on: ubuntu-latest
     steps:
       - name: Setup deck
@@ -15,5 +15,23 @@ jobs:
       - name: Run DecK ping
         run: |
           deck gateway ping --konnect-addr https://us.api.konghq.com --konnect-token kpat_C1m8GIbvammDDQIc69bgEHgAksgnXDL4N7uQALbaP84Q3Wv9M --konnect-control-plane-name serverless-default
+          deck gateway diff konnect-export.yaml --kong-addr https://us.api.konghq.com --konnect-token kpat_C1m8GIbvammDDQIc69bgEHgAksgnXDL4N7uQALbaP84Q3Wv9M --konnect-control-plane-name serverless-default
+          echo "DecK diff completed successfully."
+
+  deck-sync:
+    needs: diff-deck
+    environment: Production
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup deck
+        uses: kong/setup-deck@v1
+        with:
+          deck-version: '1.42.0'
+
+      - name: Clone repository
+        uses: actions/checkout@v2
+
+      - name: Run DecK sync
+        run: |
           deck gateway sync konnect-export.yaml --kong-addr https://us.api.konghq.com --konnect-token kpat_C1m8GIbvammDDQIc69bgEHgAksgnXDL4N7uQALbaP84Q3Wv9M --konnect-control-plane-name serverless-default
           echo "DecK sync completed successfully."
