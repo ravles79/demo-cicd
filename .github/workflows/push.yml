@@ -12,5 +12,5 @@ jobs:
       - name: Clone repository
         uses: actions/checkout@v2
 
-      - name: Run DecK sync
-        run: deck sync --kong-addr https://us.api.konghq.com
+      - name: Run DecK ping
+        run: deck gateway ping --konnect-addr https://us.api.konghq.com
