@@ -13,4 +13,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Run DecK ping
-        run: deck gateway ping --konnect-addr https://us.api.konghq.com --konnect-token kpat_C1m8GIbvammDDQIc69bgEHgAksgnXDL4N7uQALbaP84Q3Wv9M --konnect-control-plane-name serverless-default
+        run: 
+          deck gateway ping --konnect-addr https://us.api.konghq.com --konnect-token kpat_C1m8GIbvammDDQIc69bgEHgAksgnXDL4N7uQALbaP84Q3Wv9M --konnect-control-plane-name serverless-default
+          deck gateway sync --kong-addr https://us.api.konghq.com --konnect-token kpat_C1m8GIbvammDDQIc69bgEHgAksgnXDL4N7uQALbaP84Q3Wv9M --konnect-control-plane-name serverless-default
+          echo "DecK sync completed successfully."
