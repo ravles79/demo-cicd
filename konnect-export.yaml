@@ -22,7 +22,7 @@ plugins:
     hide_client_headers: false
     hour: null
     limit_by: consumer
-    minute: 50
+    minute: 25
     month: null
     path: null
     policy: local
